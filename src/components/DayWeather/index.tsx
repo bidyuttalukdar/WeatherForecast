@@ -1,6 +1,8 @@
-import "../DayWeather/DayWeather.css"
-import DayWeatherReport from "../../models/DayWeatherReport/DayWeatherReport"
-import { useState } from "react"
+//interface
+import DayWeatherReport from "../../models/DayWeatherReport";
+//style
+import "./style.css";
+
 const DayWeather = (props:DayWeatherReport) => {
   
     return (
@@ -10,8 +12,6 @@ const DayWeather = (props:DayWeatherReport) => {
                 <p>{props.day}</p>
                 <img src={props.image} className="img-weather"/>
                 <p>{props.temperature}<span>&#8451;</span></p>
-
-
             </div>
         </div>
         </>

@@ -1,21 +1,18 @@
-import SearchBar from "../src/components/SearchBar/SearchBar.tsx"
-import CountryTemperature from "../src/components/CountryTemperature/CountryTemperature.tsx"
-import DayWiseWeather from "../src/components/DayWiseWeather/DayWiseWeather.tsx"
-// import SearchBar from "../src/components/TitleBar"
-
+//components
+import SearchBar from "./components/NavBar/SearchBar.tsx"
+import CountryTemperature from "./components/CountryTemperature"
+import DayWiseWeather from "./components/DayWiseWeather";
+//styles
 import './App.css'
 
 function App() {
- 
-
   return (
     <>
-      <SearchBar></SearchBar>
+      <SearchBar/>
       <div className="bg-body">
-        <CountryTemperature></CountryTemperature>
-        <DayWiseWeather></DayWiseWeather>
+        <CountryTemperature/>
+        <DayWiseWeather/>
       </div>
-     
     </>
   )
 }
