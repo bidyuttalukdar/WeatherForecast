@@ -1,6 +1,6 @@
-.img-weather{
-    height: 10vh;
-    width: 10vw;
+.img-todayWeather{
+    height: 10em;
+    width: 10em;
 }
 /* .current-display{
     display: grid;
