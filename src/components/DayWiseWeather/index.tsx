@@ -3,7 +3,7 @@ import DayWeatherReport from "../../interfaces/DayWeatherReport";
 import DayWeather from "../DayWeather";
 
 const DayWiseWeather = () => {
-  const [weekReport, getWeekReport] = useState<DayWeatherReport[]>(() => [
+  const weekReport:DayWeatherReport[] =  [
     {
       day: "MON",
       image: "/src/assets/images/partlyClowdy.png",
@@ -13,7 +13,7 @@ const DayWiseWeather = () => {
     { day: "WED", image: "/src/assets/images/rainy.png", temperature: "27.8" },
     { day: "THU", image: "/src/assets/images/storm.png", temperature: "31.3" },
     { day: "FRI", image: "/src/assets/images/cloudy.png", temperature: "17.0" },
-  ]);
+  ];
   const dayList = weekReport.map((day:DayWeatherReport) => (
     <div className="col" key={day.day}>
       <DayWeather

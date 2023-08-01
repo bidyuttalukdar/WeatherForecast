@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import getWeatherAPI from "/src/api/weatherReport"
-import setCountryList from "../../config/countryReport"
-import WeatherImages from "../../config/enums/image"
-import CountryReport from "../../interfaces/CountryReport/index"
-// import DayW1eatherReport from "../DayWeather";
+import getWeatherAPI from "/src/api/weatherReport";
+import setCountryList from "../../config/countryReport";
+import WeatherImages from "../../config/enums/image";
+import CountryReport from "../../interfaces/CountryReport/index";
 
 //style
 import "./style.css";
 
 const CountryTemperature = () => {
-  const [searchInput,setSearchInput] = useState(() => "")
+  const [searchInput, setSearchInput] = useState(() => "");
   const [countryName, setCountryName] = useState(() => "New York");
   const [cityName, setCityName] = useState(() => "United States");
   const [countryCurrentWeather, setCountryCurrentWeather] = useState(
@@ -21,37 +20,28 @@ const CountryTemperature = () => {
   const [windSpeed, setWindSpeed] = useState(() => "6.1 kmph");
   const [precipitation, setPrecipitation] = useState(() => "0.00 mm");
   const [pressure, setPressure] = useState(() => "1025.0 mb");
-  // const [weatherStatus,setWeatherStatus] = useState(() => "Partly Cloudy")
-  const [weatherImage,setWeatherImage]  = useState(() => WeatherImages["partlyCloudy"])
-// const [countryList,getCountryList] = useState<CountryReport[]>(() => [])
-var countriesDetails:CountryReport[];
-  async function getWeatherDetails (){
- 
-    countriesDetails =setCountryList()
-   console.log(countriesDetails);
- 
-  
-  for(let i=0; i<countriesDetails.length;i++){
-    console.log(countriesDetails[i].countryName.toLowerCase()+":"+searchInput.toLowerCase());
-    
-    if(countriesDetails[i].cityName.toLowerCase() === searchInput.toLowerCase()){
-      setCityName(() => countriesDetails[i].cityName)
-      setCountryName(() => countriesDetails[i].countryName)
-      setCountryCurrentTemperature(() => countriesDetails[i].temperature)
-      setWindSpeed(() => String(countriesDetails[i].wind) + " kmph")
-      setPrecipitation(() => String(countriesDetails[i].precipitation) + " mm")
-      setPressure(() => String(countriesDetails[i].pressure) + " mb")
-      setWeatherImage(() => WeatherImages[String(countriesDetails[i].imgCode)])
-      setCountryCurrentWeather(() => countriesDetails[i].weatherStatus)
-      console.log(weatherImage);
-      
-    }
-  }
-    
-  }
-  
+  const [weatherImage, setWeatherImage] = useState(
+    () => WeatherImages["partlyCloudy"]
+  );
 
- 
+  var countriesDetails: CountryReport[];
+  async function getWeatherDetails() {
+    countriesDetails = setCountryList();
+
+    countriesDetails.forEach((country) => {
+      if (country.cityName.toLowerCase() === searchInput.toLowerCase()) {
+        setCityName(() => country.cityName);
+        setCountryName(() => country.countryName);
+        setCountryCurrentTemperature(() => country.temperature);
+        setWindSpeed(() => String(country.wind) + " kmph");
+        setPrecipitation(() => String(country.precipitation) + " mm");
+        setPressure(() => String(country.pressure) + " mb");
+        setWeatherImage(() => WeatherImages[String(country.imgCode)]);
+        setCountryCurrentWeather(() => country.weatherStatus);
+      }
+    });
+  }
+
   return (
     <>
       <div className="container-fluid ">
@@ -63,9 +53,13 @@ var countriesDetails:CountryReport[];
                 type="search"
                 placeholder="Enter the location"
                 aria-label="Search"
-                onChange = {(e) => setSearchInput(e.target.value )}
+                onChange={(e) => setSearchInput(e.target.value)}
               />
-              <button className="btn btn-outline-success" onClick={getWeatherDetails} type="button">
+              <button
+                className="btn btn-outline-success"
+                onClick={getWeatherDetails}
+                type="button"
+              >
                 Search
               </button>
             </form>
@@ -82,10 +76,7 @@ var countriesDetails:CountryReport[];
         <div className="row">
           <div className="col mt-3 d-flex justify-content-center">
             <div>
-              <img
-                src={weatherImage}
-                className="img-todayWeather"
-              ></img>
+              <img src={weatherImage} className="img-todayWeather"></img>
               <h5 className="text-white mt-3 ml-2">{countryCurrentWeather}</h5>
             </div>
           </div>

@@ -1,5 +1,5 @@
 //components
-import SearchBar from "./components/NavBar";
+import NavBar from "./components/NavBar";
 import CountryTemperature from "./components/CountryTemperature";
 import DayWiseWeather from "./components/DayWiseWeather";
 //styles
@@ -9,7 +9,7 @@ function App() {
   return (
     <>
     <div className="h-100">
-      <SearchBar />
+      <NavBar />
       <div className="bg-body">
         <CountryTemperature />
         <DayWiseWeather />
